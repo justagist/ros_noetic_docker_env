@@ -52,8 +52,13 @@ RUN pip3 install future numpy numpy-quaternion==2020.5.11.13.33.35 \
 
 RUN if [[ $HTTP_PROXY != '' ]]; then git config --global http.proxy $HTTP_PROXY; fi
 
-RUN apt-get update && apt-get -y install python3-catkin-tools
 RUN apt-get update && apt-get -y upgrade
+
+# nvidia-container-runtime
+ENV NVIDIA_VISIBLE_DEVICES \
+    ${NVIDIA_VISIBLE_DEVICES:-all}
+ENV NVIDIA_DRIVER_CAPABILITIES \
+    ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
 
 LABEL DEV_VERSION ros-noetic-dev
 
