@@ -1,11 +1,13 @@
 FROM osrf/ros:noetic-desktop-full
 ENV DEBIAN_FRONTEND noninteractive
 
+## -- proxy settings
 #ARG http_proxy
 #ARG https_proxy
 
 #ENV http_proxy=$http_proxy
 #ENV https_proxy=$https_proxy
+## ----
 
 # install packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -15,11 +17,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 #installs avahi for local network discovery (required for using the real robot)
-RUN apt-get update && apt-get install -y \
-    avahi-daemon avahi-utils
+# RUN apt-get update && apt-get install -y \
+#     avahi-daemon avahi-utils
 
 
-# Dependencies for baxter, sawyer and franka
+# Dependencies moveit, rviz, gazebo, franka
 
 RUN apt-get update && \ 
     apt-get -y install sudo nano python3-pip python3-scipy libprotobuf-dev protobuf-compiler libboost-all-dev \
@@ -45,13 +47,13 @@ RUN apt-get update && \
 #     pip3 install pandas 
 
 
-#six PySide
 RUN pip3 install future numpy numpy-quaternion==2020.5.11.13.33.35 \
     pygame decorator matplotlib Pillow scipy scikit-learn osrf-pycommon
 
 
 RUN if [[ $HTTP_PROXY != '' ]]; then git config --global http.proxy $HTTP_PROXY; fi
 
+## This might have to be removed for guaranteed compatibility
 RUN apt-get update && apt-get -y upgrade
 
 # nvidia-container-runtime

@@ -4,10 +4,9 @@ ROOT_DIR="$(cd $( dirname ${BASH_SOURCE[0]} ) && pwd)"
 command_exists () {
     type "$1" &> /dev/null ;
 }
-distro_type="noetic"
 
 # path where the catkin ws will be stored for the docker to use
-HOST_WS_PATH="$HOME/.noetic_dev_${distro_type}_ws"
+HOST_WS_PATH="$HOME/.noetic_dev_ws"
 
 if command_exists nvidia-docker; then
       extra_params="--runtime nvidia"

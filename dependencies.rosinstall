@@ -22,3 +22,7 @@
     local-name: orocos_kinematics_dynamics
     uri: https://github.com/orocos/orocos_kinematics_dynamics
     version: master
+- git:
+    local-name: panda_simulator
+    uri: https://github.com/justagist/panda_simulator
+    version: noetic-devel
