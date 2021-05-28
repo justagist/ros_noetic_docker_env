@@ -6,7 +6,13 @@ from panda_robot import PandaArm
 
 from geometry_msgs.msg import Pose, PoseStamped
 
-# pub = rospy
+"""
+Test script for testing Franka Emika Panda robot (simulated or real). The robot driver should be running (`interface.launch` for real robot, or `panda_world.launch` & `sim_move_group.launch` for simulated robot)
+
+Run this script interactively: `python3 -i test_franka.sh`
+
+Use the interface methods to test the robot (see below).
+"""
 
 poses = [
          [-8.48556818e-02, -8.88127666e-02, -6.59622769e-01, -1.57569726e+00, -4.82374882e-04,  2.15975946e+00,  4.36766917e-01],
@@ -85,7 +91,9 @@ if __name__ == '__main__':
     # In interactive mode, for instance enter 
     #               $ neutral()
     #   to make the robot move to neutral pose
-    # or type $ move_to(poses[0]) to move to the first joint pose from the list defined above (make sure robot workspace is free)
+    #   or 
+    #               $ move_to(poses[0]) 
+    #   to move to the first joint pose from the list defined above (make sure robot workspace is free)
 
     mvt = r.get_movegroup_interface()
 
